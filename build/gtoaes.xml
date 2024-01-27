@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Network>
+    <Client port="5010"/>
+    <Mount port="5011"/>
+    <Camera port="5012"/>
+    <Focus port="5013"/>
+</Network>
+<Database enabled="false" URL=""/>
+<GeoSite name="Xinglong">
+    <Coords lon="117.57454" lat="40.39593" alt="900"/>
+</GeoSite>
