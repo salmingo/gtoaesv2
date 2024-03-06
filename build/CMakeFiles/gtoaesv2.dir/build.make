@@ -73,169 +73,169 @@ CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/AsioTCP.cpp
 CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/AsioTCP.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/AsioTCP.cpp
 
 CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/AsioTCP.cpp > CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/AsioTCP.cpp > CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/AsioTCP.cpp -o CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/AsioTCP.cpp -o CMakeFiles/gtoaesv2.dir/src/AsioTCP.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostAsioKeep.cpp
 CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostAsioKeep.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostAsioKeep.cpp
 
 CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostAsioKeep.cpp > CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostAsioKeep.cpp > CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostAsioKeep.cpp -o CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostAsioKeep.cpp -o CMakeFiles/gtoaesv2.dir/src/BoostAsioKeep.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostInclude.cpp
 CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostInclude.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostInclude.cpp
 
 CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostInclude.cpp > CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostInclude.cpp > CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostInclude.cpp -o CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/BoostInclude.cpp -o CMakeFiles/gtoaesv2.dir/src/BoostInclude.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GLog.cpp
 CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GLog.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/GLog.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GLog.cpp
 
 CMakeFiles/gtoaesv2.dir/src/GLog.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/GLog.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GLog.cpp > CMakeFiles/gtoaesv2.dir/src/GLog.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GLog.cpp > CMakeFiles/gtoaesv2.dir/src/GLog.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/GLog.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/GLog.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GLog.cpp -o CMakeFiles/gtoaesv2.dir/src/GLog.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GLog.cpp -o CMakeFiles/gtoaesv2.dir/src/GLog.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GeneralControl.cpp
 CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GeneralControl.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GeneralControl.cpp
 
 CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GeneralControl.cpp > CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GeneralControl.cpp > CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GeneralControl.cpp -o CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/GeneralControl.cpp -o CMakeFiles/gtoaesv2.dir/src/GeneralControl.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/KVProtocol.cpp
 CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/KVProtocol.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/KVProtocol.cpp
 
 CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/KVProtocol.cpp > CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/KVProtocol.cpp > CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/KVProtocol.cpp -o CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/KVProtocol.cpp -o CMakeFiles/gtoaesv2.dir/src/KVProtocol.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/MessageQueue.cpp
 CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/MessageQueue.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/MessageQueue.cpp
 
 CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/MessageQueue.cpp > CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/MessageQueue.cpp > CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/MessageQueue.cpp -o CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/MessageQueue.cpp -o CMakeFiles/gtoaesv2.dir/src/MessageQueue.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/NonKVProtocol.cpp
 CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/NonKVProtocol.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/NonKVProtocol.cpp
 
 CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/NonKVProtocol.cpp > CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/NonKVProtocol.cpp > CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/NonKVProtocol.cpp -o CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/NonKVProtocol.cpp -o CMakeFiles/gtoaesv2.dir/src/NonKVProtocol.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/ObservationSystem.cpp
 CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/ObservationSystem.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/ObservationSystem.cpp
 
 CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/ObservationSystem.cpp > CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/ObservationSystem.cpp > CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/ObservationSystem.cpp -o CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/ObservationSystem.cpp -o CMakeFiles/gtoaesv2.dir/src/ObservationSystem.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/Parameter.cpp
 CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/Parameter.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/Parameter.cpp
 
 CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/Parameter.cpp > CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/Parameter.cpp > CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/Parameter.cpp -o CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/Parameter.cpp -o CMakeFiles/gtoaesv2.dir/src/Parameter.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/daemon.cpp
 CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/daemon.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/daemon.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/daemon.cpp
 
 CMakeFiles/gtoaesv2.dir/src/daemon.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/daemon.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/daemon.cpp > CMakeFiles/gtoaesv2.dir/src/daemon.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/daemon.cpp > CMakeFiles/gtoaesv2.dir/src/daemon.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/daemon.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/daemon.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/daemon.cpp -o CMakeFiles/gtoaesv2.dir/src/daemon.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/daemon.cpp -o CMakeFiles/gtoaesv2.dir/src/daemon.cpp.s
 
 CMakeFiles/gtoaesv2.dir/src/main.cpp.o: CMakeFiles/gtoaesv2.dir/flags.make
 CMakeFiles/gtoaesv2.dir/src/main.cpp.o: /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/main.cpp
 CMakeFiles/gtoaesv2.dir/src/main.cpp.o: CMakeFiles/gtoaesv2.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/gtoaesv2.dir/src/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/main.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/main.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/main.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/main.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gtoaesv2.dir/src/main.cpp.o -MF CMakeFiles/gtoaesv2.dir/src/main.cpp.o.d -o CMakeFiles/gtoaesv2.dir/src/main.cpp.o -c /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/main.cpp
 
 CMakeFiles/gtoaesv2.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtoaesv2.dir/src/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/main.cpp > CMakeFiles/gtoaesv2.dir/src/main.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/main.cpp > CMakeFiles/gtoaesv2.dir/src/main.cpp.i
 
 CMakeFiles/gtoaesv2.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtoaesv2.dir/src/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/main.cpp -o CMakeFiles/gtoaesv2.dir/src/main.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lxm/Project/GWAC/新系统-设计/Codes/gtoaes/src/main.cpp -o CMakeFiles/gtoaesv2.dir/src/main.cpp.s
 
 # Object files for target gtoaesv2
 gtoaesv2_OBJECTS = \

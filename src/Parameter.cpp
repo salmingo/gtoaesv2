@@ -11,14 +11,11 @@ bool Parameter::Init(const string& filepath) {
 	ptree pt;
 
 	ptree& ptNet = pt.add("Network", "");
-	ptNet.add("Client.<xmlattr>.port", portClient);
-	ptNet.add("Mount.<xmlattr>.port",  portMount);
-	ptNet.add("Camera.<xmlattr>.port", portCamera);
-	ptNet.add("Focus.<xmlattr>.port",  portFocus);
-
-	ptree& ptDB = pt.add("Database", "");
-	ptDB.add("<xmlattr>.enabled", dbEnabled);
-	ptDB.add("<xmlattr>.URL", dbUrl);
+	ptNet.add("Client.<xmlattr>.port",     portClient);
+	ptNet.add("MountGWAC.<xmlattr>.port",  portMountGWAC);
+	ptNet.add("Camera.<xmlattr>.port",     portCamera);
+	ptNet.add("FocusGWAC.<xmlattr>.port",  portFocusGWAC);
+	ptNet.add("MountGFT.<xmlattr>.port",   portMountGFT);
 
 	ptree& ptSite = pt.add("GeoSite", "");
 	ptSite.add("<xmlattr>.name", siteName);
@@ -43,13 +40,11 @@ bool Parameter::Load(const string& filepath) {
 		ptree pt;
 		read_xml(filepath, pt, xml_parser::trim_whitespace);
 
-		portClient = pt.get("Network.Client.<xmlattr>.port", 5010);
-		portMount  = pt.get("Network.Mount.<xmlattr>.port",  5011);
-		portCamera = pt.get("Network.Camera.<xmlattr>.port", 5012);
-		portFocus  = pt.get("Network.Focus.<xmlattr>.port",  5013);
-
-		dbEnabled = pt.get("Database.<xmlattr>.enabled", false);
-		dbUrl     = pt.get("Database.<xmlattr>.URL",     "");
+		portClient     = pt.get("Network.Client.<xmlattr>.port",     5010);
+		portMountGWAC  = pt.get("Network.MountGWAC.<xmlattr>.port",  5011);
+		portCamera     = pt.get("Network.Camera.<xmlattr>.port",     5012);
+		portFocusGWAC  = pt.get("Network.FocusGWAC.<xmlattr>.port",  5013);
+		portMountGFT   = pt.get("Network.MountGFT.<xmlattr>.port",   5014);
 
 		siteName = pt.get("GeoSite.<xmlattr>.name", "");
 		siteLon  = pt.get("GeoSite.Coords.<xmlattr>.lon", 120);
@@ -69,14 +64,11 @@ bool Parameter::Save(const string& filepath) {
 	ptree pt;
 
 	ptree& ptNet = pt.add("Network", "");
-	ptNet.add("Client.<xmlattr>.port", portClient);
-	ptNet.add("Mount.<xmlattr>.port",  portMount);
-	ptNet.add("Camera.<xmlattr>.port", portCamera);
-	ptNet.add("Focus.<xmlattr>.port",  portFocus);
-
-	ptree& ptDB = pt.add("Database", "");
-	ptDB.add("<xmlattr>.enabled", dbEnabled);
-	ptDB.add("<xmlattr>.URL", dbUrl);
+	ptNet.add("Client.<xmlattr>.port",     portClient);
+	ptNet.add("MountGWAC.<xmlattr>.port",  portMountGWAC);
+	ptNet.add("Camera.<xmlattr>.port",     portCamera);
+	ptNet.add("FocusGWAC.<xmlattr>.port",  portFocusGWAC);
+	ptNet.add("MountGFT.<xmlattr>.port",   portMountGFT);
 
 	ptree& ptSite = pt.add("GeoSite", "");
 	ptSite.add("<xmlattr>.name", siteName);

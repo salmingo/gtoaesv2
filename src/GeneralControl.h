@@ -71,15 +71,17 @@ private:
 // 成员变量
 private:
 	Parameter* param_;		///< 配置参数
-	TcpSPtr tcpSvrClient_;	///< TCP服务: 客户端
-	TcpSPtr tcpSvrMount_;	///< TCP服务: 转台
-	TcpSPtr tcpSvrCamera_;	///< TCP服务: 相机
-	TcpSPtr tcpSvrFocus_;	///< TCP服务: 调焦
+	TcpSPtr tcpSvrClient_;		///< TCP服务: 客户端
+	TcpSPtr tcpSvrMountGWAC_;	///< TCP服务: 转台, GWAC
+	TcpSPtr tcpSvrCamera_;		///< TCP服务: 相机
+	TcpSPtr tcpSvrFocusGWAC_;	///< TCP服务: 调焦, GWAC
+	TcpSPtr tcpSvrMountGFT_;	///< TCP服务: 转台, 后随
 
 	TcpCVec tcpCliClient_;	///< TCP客户: 客户端
-	TcpCVec tcpCliMount_;	///< TCP客户: 转台
+	TcpCVec tcpCliMountGWAC_;	///< TCP客户: 转台, GWAC
 	TcpCVec tcpCliCamera_;	///< TCP客户: 相机
-	TcpCVec tcpCliFocus_;	///< TCP客户: 调焦
+	TcpCVec tcpCliFocusGWAC_;	///< TCP客户: 调焦
+	TcpCVec tcpCliMountGFT_;///< TCP客户: 转台, 后随
 
 	KVProtocol kvproto_;		///< 解析通信协议: 指令+键值对
 	NonKVProtocol nonkvproto_;	///< 解析通信协议: 转台

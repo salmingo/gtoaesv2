@@ -18,7 +18,7 @@
 					"linkFrameworkDirectories" : [],
 					"linkLibraries" : []
 				},
-				"path" : "/Library/Developer/CommandLineTools/usr/bin/cc",
+				"path" : "/usr/bin/clang",
 				"version" : "15.0.0.15000100"
 			},
 			"language" : "C",
@@ -48,7 +48,7 @@
 						"c++"
 					]
 				},
-				"path" : "/Library/Developer/CommandLineTools/usr/bin/c++",
+				"path" : "/usr/bin/clang++",
 				"version" : "15.0.0.15000100"
 			},
 			"language" : "CXX",

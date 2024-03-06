@@ -32,6 +32,8 @@
 #define KVTYPE_GUIDE        "guide"         ///< 导星. 与图像处理结果闭环 --> 转台
 #define KVTYPE_HOME         "home"          ///< 搜索零点
 #define KVTYPE_SYNC         "sync"          ///< 同步零点
+#define KVTYPE_TRACK 		"track" 		///< 转台转入恒动跟踪
+#define KVTYPE_TRACKVEL		"trackvel"		///< 设置转台跟踪速度
 #define KVTYPE_MOUNT        "mount"         ///< 转台工作状态
 // 转台
 //////////////////////////////////////////////////////////////////////////////
@@ -46,6 +48,7 @@
 //////////////////////////////////////////////////////////////////////////////
 // 调焦
 #define KVTYPE_FOCUS        "focus"         ///< 调焦
+#define KVTYPE_FOCUS_SYNC	"focus_sync"	///< 将焦点当前位置重置为0
 #define KVTYPE_FWHM         "fwhm"          ///< 闭环调焦
 // 调焦
 //////////////////////////////////////////////////////////////////////////////
@@ -463,6 +466,45 @@ public:
 };
 
 /**
+ * @brief 命令处于静止态的转台进入跟踪态
+ */
+struct KVTrack : public KVBase {
+public:
+	KVTrack() {
+		type = KVTYPE_TRACK;
+	}
+
+    string ToString() const {
+        std::stringstream ss;
+        ss << KVBase::ToString();
+        ss << std::endl;
+        return ss.str();
+    }
+};
+
+/**
+ * @brief 设置跟踪态转台单轴跟踪速度
+ */
+struct KVTrackVel : public KVBase {
+	double ra;	///< 赤经轴跟踪速度, 量纲: 角秒/秒
+	double dec;	///< 赤纬轴跟踪速度, 量纲: 角秒/秒
+
+public:
+	KVTrackVel() {
+		type = KVTYPE_TRACKVEL;
+	}
+
+    string ToString() const {
+        std::stringstream ss;
+        ss << KVBase::ToString();
+        ss << join_kv("ra",      ra);
+        ss << join_kv("dec",     dec);
+        ss << std::endl;
+        return ss.str();
+    }
+};
+
+/**
  * @brief 转台实时工作状态
  */
 struct KVMount : public KVBase {
@@ -675,6 +717,23 @@ public:
     }
 };
 
+/**
+ * @brief 开环调焦: 指令和位置
+ */
+struct KVFocusSync : public KVBase {
+public:
+	KVFocusSync() {
+		type = KVTYPE_FOCUS_SYNC;
+	};
+
+    string ToString() const {
+        std::stringstream ss;
+        ss << KVBase::ToString();
+        ss << std::endl;
+        return ss.str();
+	}
+};
+
 struct KVFWHM : public KVBase {
     double fwhm;    ///< 半高全宽
     string tmimg;   ///< FWHM对应的图像时标
@@ -864,12 +923,15 @@ typedef boost::shared_ptr<KVPark>       KVParkPtr;
 typedef boost::shared_ptr<KVGuide>      KVGuidePtr;
 typedef boost::shared_ptr<KVHome>       KVHomePtr;
 typedef boost::shared_ptr<KVSync>       KVSyncPtr;
+typedef boost::shared_ptr<KVTrack>      KVTrackPtr;
+typedef boost::shared_ptr<KVTrackVel>   KVTrackVelPtr;
 typedef boost::shared_ptr<KVMount>      KVMountPtr;
 typedef boost::shared_ptr<KVTakeImage>  KVTkImgPtr;
 typedef boost::shared_ptr<KVExpose>     KVExpPtr;
 typedef boost::shared_ptr<KVCamSet>     KVCamSetPtr;
 typedef boost::shared_ptr<KVCamera>     KVCamPtr;
 typedef boost::shared_ptr<KVFocus>      KVFocusPtr;
+typedef boost::shared_ptr<KVFocusSync>  KVFocusSyncPtr;
 typedef boost::shared_ptr<KVFWHM>       KVFwhmPtr;
 typedef boost::shared_ptr<KVDerot>      KVDerotPtr;
 typedef boost::shared_ptr<KVDome>       KVDomePtr;

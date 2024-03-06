@@ -20,7 +20,6 @@
 
 using std::string;
 
-#define NONKVTYPE_READY		"ready"
 #define NONKVTYPE_STATE		"status"
 #define NONKVTYPE_POS		"currentpos"
 #define NONKVTYPE_FOCUS		"focus"
@@ -38,19 +37,6 @@ struct NonKVBase {
 public:
 	NonKVBase() = default;
 	virtual ~NonKVBase() = default;
-};
-
-/*!
- * @brief 转台完成准备标志
- */
-struct NonKVReady : public NonKVBase {
-	int  n;			//< 转台实际数量
-	int8_t ready[20];	//< 完成准备. 0: 未完成; 1: 已完成; -1: 未知或转台不存在
-
-public:
-	NonKVReady() {
-		n = 0;
-	}
 };
 
 /*!
@@ -146,6 +132,8 @@ protected:
 	int sn_slewhd_ = 0;		///< 序列号: SlewHD
 	int sn_guide_ = 0;		///< 序列号: Guide
 	int sn_park_ = 0;		///< 序列号: Park
+	int sn_track_ = 0;		///< 序列号: Track
+	int sn_trackvel_ = 0;	///< 序列号: TrackVel
 	int sn_abort_ = 0;		///< 序列号: AbortSlew
 	int sn_focus_ = 0;		///< 序列号: Focus
 
@@ -215,6 +203,17 @@ public:
 	 * 组装后协议
 	 */
 	string AbortSlew();
+	/**
+	 * @brief 组装构建track指令
+	 */
+	string Track();
+	/**
+	 * @brief 组装构建trackVel指令
+	 * @param ra  赤经速度, 量纲: 角秒@秒
+	 * @param dec 赤纬速度, 量纲: 角秒@秒
+	 * @note 设置转台自定义跟踪速度
+	 */
+	string TrackVelocity(double ra, double dec);
 	// /*!
 	//  * @brief 组装构建focus指令
 	//  * @param gid  组标志

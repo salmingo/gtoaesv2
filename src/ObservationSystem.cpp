@@ -286,21 +286,17 @@ void ObservationSystem::NotifyMountPosition(const NonKVPosition& pos) {
 void ObservationSystem::NotifyFocus(const string& cid, int pos) {
 	for (auto it = camInfoVec_.begin(); it != camInfoVec_.end(); ++it) {
 		if (iequals((*it).info.cid, cid)) {
-			if (it->focState < 0) {
-				it->focState = 0;
-				_gLog.Write("Focus<%s:%s:%s> position is %d", gid_.c_str(), uid_.c_str(),
-					cid.c_str(), pos);
-			}
+			int state(it->focState);
 			if (pos != (*it).focPos) {
 				(*it).focPos = pos;
 				(*it).repeat = 0;
 			}
 			else if ((*it).focState && ++(*it).repeat >= 3) {// 响应调焦指令
-				(*it).focState = 0;
-				if (pos != (*it).focTar) {
+				if (it->focState > 0 && pos != (*it).focTar) {
 					_gLog.Write(LOG_WARN, "Focus<%s:%s:%s> position<%d> differs from target<%d>",
 						gid_.c_str(), uid_.c_str(), cid.c_str(), pos, (*it).focTar);
 				}
+				(*it).focState = 0;
 				// 通知相机
 				KVFocus proto;
 				proto.gid = gid_;
@@ -310,6 +306,10 @@ void ObservationSystem::NotifyFocus(const string& cid, int pos) {
 				proto.posTar = it->focTar;
 				string rsp = proto.ToString();
 				if ((*it).ptrTcp.use_count()) (*it).ptrTcp->Write(rsp.c_str(), rsp.size());
+			}
+			if (state != it->focState) {
+				_gLog.Write("Focus<%s:%s:%s> position is %d", gid_.c_str(), uid_.c_str(),
+					cid.c_str(), pos);
 			}
 
 			break;
@@ -499,7 +499,7 @@ void ObservationSystem::TakeImage(KVTkImgPtr proto0) {
 		// 相机指令
 		string cmd = proto->ToString();
 		write2camera(cmd.c_str(), cmd.size(), proto->cid.c_str());
-		expose2camera(EXP_START);
+		expose2camera(EXP_START, 0, proto->cid.c_str());
 		// 更新协议状态
 		plan_ = proto;
 		plan_state_->UpdateUTC();
@@ -544,7 +544,7 @@ void ObservationSystem::Focus(KVFocusPtr proto) {
 				gid_.c_str(), uid_.c_str(), cid.c_str(),
 				posNow, posTar);
 
-			string cmd = nonkvproto_.Focus(cid, posTar);
+			string cmd = nonkvproto_.Focus(cid, proto->relPos);
 			tcpFocus_->Write(cmd.c_str(), cmd.size());
 		}
 	}

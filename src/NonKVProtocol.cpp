@@ -45,7 +45,6 @@ NonKVBasePtr NonKVProtocol::Resolve(const char* rcvd) {
 	string_ref sref(rcvd);
 	string prefix("g#");				// 定义引导符
 	string suffix("%");					// 定义结束符: 同时还是中间符!!!
-	string type_ready(NONKVTYPE_READY);	// 定义协议: ready
 	string type_state(NONKVTYPE_STATE);	// 定义协议: status
 	string type_pos(NONKVTYPE_POS);		// 定义协议: currentpos
 	string type_focus(NONKVTYPE_FOCUS);	// 定义协议: focus
@@ -64,7 +63,7 @@ NonKVBasePtr NonKVProtocol::Resolve(const char* rcvd) {
 	// int camera_len = 3;		// 约定: 相机标志长度为3字节
 	// int focus_len  = 4;		// 约定: 焦点位置长度为4字节
 	// int mc_len = 2;			// 约定: 镜盖状态长度为2字节
-	int n(sref.length() - suffix.length()), pos, i, j;
+	int n(sref.length() - suffix.length()), pos, i(0), j;
 	char ch, buff[20], buff1[20];
 
 	if (!sref.starts_with(prefix) || !sref.ends_with(suffix)) {
@@ -73,12 +72,7 @@ NonKVBasePtr NonKVProtocol::Resolve(const char* rcvd) {
 	}
 	else if ((pos = sref.find("Rec")) > 0) {// 指令回馈, 抛弃
 	}
-	else if ((pos = sref.find(type_ready)) > 0) {// ready
-		boost::shared_ptr<NonKVReady> body(new NonKVReady);
-		body->type = type_ready;
-		for (i = prefix.length(); i < pos; ++i) body->gid += sref.at(i);
-		for (i = pos + type_ready.length(), j = 0; i < n && sref.at(i) != sep; ++i, ++j, ++body->n) body->ready[j] = sref.at(i) - '0';
-		proto = boost::static_pointer_cast<NonKVBase>(body);
+	else if ((pos = sref.find("finished")) > 0) {// 指令回馈: 调焦到位
 	}
 	else if ((pos = sref.find(type_state)) > 0) {// state
 		boost::shared_ptr<NonKVStatus> body(new NonKVStatus);
@@ -137,7 +131,7 @@ NonKVBasePtr NonKVProtocol::Resolve(const char* rcvd) {
 
 		if (index >= 0) proto = boost::static_pointer_cast<NonKVBase>(body);
 	}
-
+	if (proto->gid.size() != 3) proto.reset();
 	if (proto.unique()) {
 		for (++i; i < n && sref.at(i) != sep; ++i) proto->utc += sref.at(i);
 		proto->utc += "T";
@@ -239,6 +233,39 @@ string NonKVProtocol::AbortSlew() {
 		to_simple_string(utc.time_of_day()).c_str(),
 		++sn_abort_);
 	if (sn_abort_ == 99999) sn_abort_ = 0;
+	return string(buff);
+}
+
+/**
+ * @brief 组装构建track指令
+ */
+string NonKVProtocol::Track() {
+	char buff[100];
+	ptime utc = second_clock::universal_time();
+	snprintf(buff, 100, "g#%s%strack%%%s%%%s%%%05d%%\n",
+		gid_.c_str(), uid_.c_str(),
+		to_iso_extended_string(utc.date()).c_str(),
+		to_simple_string(utc.time_of_day()).c_str(),
+		++sn_track_);
+	if (sn_track_ == 99999) sn_track_ = 0;
+	return string(buff);
+}
+
+/**
+ * @brief 组装构建trackVel指令
+ * @param ra  赤经速度, 量纲: 角秒@秒
+ * @param dec 赤纬速度, 量纲: 角秒@秒
+ * @note 设置转台自定义跟踪速度
+ */
+string NonKVProtocol::TrackVelocity(double ra, double dec) {
+	char buff[100];
+	ptime utc = second_clock::universal_time();
+	snprintf(buff, 100, "g#%s%strack%%%s%%%s%%%05d%%\n",
+		gid_.c_str(), uid_.c_str(),
+		to_iso_extended_string(utc.date()).c_str(),
+		to_simple_string(utc.time_of_day()).c_str(),
+		++sn_trackvel_);
+	if (sn_trackvel_ == 99999) sn_trackvel_ = 0;
 	return string(buff);
 }
 

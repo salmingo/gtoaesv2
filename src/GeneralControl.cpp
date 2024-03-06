@@ -39,14 +39,16 @@ void GeneralControl::Stop() {
 	obssVec_.clear();
 
 	tcpSvrClient_.reset();
-	tcpSvrMount_.reset();
+	tcpSvrMountGWAC_.reset();
 	tcpSvrCamera_.reset();
-	tcpSvrFocus_.reset();
+	tcpSvrFocusGWAC_.reset();
+	tcpSvrMountGFT_.reset();
 
 	tcpCliClient_.Reset();
-	tcpCliMount_.Reset();
+	tcpCliMountGWAC_.Reset();
 	tcpCliCamera_.Reset();
-	tcpCliFocus_.Reset();
+	tcpCliFocusGWAC_.Reset();
+	tcpCliMountGFT_.Reset();
 
 	MessageQueue::Stop();
 }
@@ -64,8 +66,8 @@ void GeneralControl::register_messages() {
 void GeneralControl::on_tcp_close(const long connptr, const long peer_type) {
 	if (peer_type == PEER_CLIENT)     tcpCliClient_.Pop((TcpClient*) connptr);
 	else if (peer_type == PEER_CAMERA)tcpCliCamera_.Pop((TcpClient*) connptr);
-	else if (peer_type == PEER_MOUNT) {
-		TcpCPtr sp = tcpCliMount_.Pop ((TcpClient*) connptr);
+	else if (peer_type == PEER_MOUNT_GWAC) {
+		TcpCPtr sp = tcpCliMountGWAC_.Pop ((TcpClient*) connptr);
 		MtxLck lck(mtxObss_);
 		for (auto it = obssVec_.begin(); it != obssVec_.end(); ++it) {
 			(*it)->DecoupleMount(sp);
@@ -141,10 +143,11 @@ bool GeneralControl::create_tcp_server(TcpSPtr& server, int port, int peer_type)
  * @return 服务启动结果
  */
 bool GeneralControl::start_tcp_server() {
-	return create_tcp_server(tcpSvrClient_, param_->portClient, PEER_CLIENT)
-		&& create_tcp_server(tcpSvrMount_,  param_->portMount,  PEER_MOUNT)
-		&& create_tcp_server(tcpSvrCamera_, param_->portCamera, PEER_CAMERA)
-		&& create_tcp_server(tcpSvrFocus_,  param_->portFocus,  PEER_FOCUS);
+	return create_tcp_server(tcpSvrClient_, param_->portClient,         PEER_CLIENT)
+		&& create_tcp_server(tcpSvrMountGWAC_,  param_->portMountGWAC,  PEER_MOUNT)
+		&& create_tcp_server(tcpSvrCamera_, param_->portCamera,         PEER_CAMERA)
+		&& create_tcp_server(tcpSvrFocusGWAC_,  param_->portFocusGWAC,  PEER_FOCUS)
+		&& create_tcp_server(tcpSvrMountGFT_,  param_->portMountGFT,    PEER_MOUNT);
 }
 
 // 收到连接请求
@@ -248,16 +251,7 @@ void GeneralControl::process_protocol_mount(TcpClient* cliptr, NonKVBasePtr prot
 	int imin = boost::iequals(gid, "001") ? 0 : 4;
 	int imax = imin == 0 ? 3 : 9;
 
-	if (iequals(proto->type, NONKVTYPE_READY)) {
-		boost::shared_ptr<NonKVReady> ready = boost::static_pointer_cast<NonKVReady>(proto);
-		boost::format fmt("%03d");
-		for (int i = imin; i < ready->n && i <= imax; ++i) {
-			ObssPtr obss = find_obss(gid, (fmt % (i + 1)).str());
-			if (ready->ready[i]) obss->CoupleMount(sp);
-			else obss->DecoupleMount(sp);
-		}
-	}
-	else if (iequals(proto->type, NONKVTYPE_STATE)) {
+	if (iequals(proto->type, NONKVTYPE_STATE)) {
 		boost::shared_ptr<NonKVStatus> status = boost::static_pointer_cast<NonKVStatus>(proto);
 		boost::format fmt("%03d");
 		for (int i = imin; i < status->n && i <= imax; ++i) {

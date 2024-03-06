@@ -18,7 +18,8 @@
  */
 enum {///< 对应主机类型
 	PEER_CLIENT,	///< 客户端
-	PEER_MOUNT,		///< 转台
+	PEER_MOUNT_GWAC,///< 转台, GWAC
+	PEER_MOUNT_GFT, ///< 转台, 后随
 	PEER_CAMERA,	///< 相机
 	PEER_FOCUS,		///< 调焦
 	PEER_DATAPROC,	///< 数据处理

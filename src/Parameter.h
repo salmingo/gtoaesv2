@@ -19,14 +19,11 @@ struct Parameter
 {
 	/* 成员变量 */
 	// 服务端口
-	int portClient	= 5010;	//< 客户端
-	int portMount	= 5011;	//< 转台
-	int portCamera	= 5012;	//< 相机
-	int portFocus   = 5013;	//< 调焦
-
-	// 数据库
-	bool dbEnabled  = false;//< 标志: 启用
-	string dbUrl    = "";	//< URL地址
+	int portClient	    = 5010;	//< 客户端
+	int portMountGWAC	= 5011;	//< 转台, GWAC
+	int portCamera	    = 5012;	//< 相机
+	int portFocusGWAC   = 5013;	//< 调焦, GWAC
+	int portMountGFT    = 5014; //< 后随望远镜
 
 	// 测站位置
 	string siteName = "Xinglong";	//< 名称
