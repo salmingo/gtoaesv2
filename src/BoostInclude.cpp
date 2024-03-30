@@ -11,18 +11,20 @@
 
 // 中断线程
 void interrupt_thread(boost::thread &thrd) {
-	if (thrd.joinable()) {
+	boost::chrono::milliseconds delay(100);
+	while (thrd.joinable()) {
 		thrd.interrupt();
-		thrd.join();
+		thrd.try_join_for(delay);
 	}
 }
 
 void interrupt_thread(ThrdPtr& thrd) {
-	if (thrd.unique() && thrd->joinable()) {
+	boost::chrono::milliseconds delay(100);
+	while (thrd.unique() && thrd->joinable()) {
 		thrd->interrupt();
-		thrd->join();
-		thrd.reset();
+		thrd->try_join_for(delay);
 	}
+	thrd.reset();
 }
 
 #ifdef _WINDOWS

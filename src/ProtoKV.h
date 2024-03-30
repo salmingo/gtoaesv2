@@ -78,70 +78,7 @@
 // 滤光片
 //////////////////////////////////////////////////////////////////////////////
 /**
- * @brief 新的观测计划: GWAC
- * @note
- * - 服务器: 维护调度观测计划
- * - 相机: 观测计划的描述信息
- */
-struct KVAppGWAC : public KVBase
-{
-    string plan_sn;     ///< 计划编号
-    string objid;       ///< 目标名称
-	string obstype; 	///< 计划类型
-    int    coorsys = 0; ///< 0: 赤道/赤经赤纬; 1: 赤道/时角赤纬
-    double ra = 0;          ///< 赤经/时角, 角度
-    double dec= 0;         ///< 赤纬, 角度
-    double epoch= 0;       ///< 历元. 0.0=当前历元
-    /**
-     * imgtype的特殊用法:
-     * @li 当没有指定imgtype时, 采用默认值
-     * - 当expdur==0时, imgtype <-- BIAS
-     * - 当expdur!=0时, imgtype <-- OBJECT
-     */
-    string imgtype;     ///< 图像类型. BIAS/DARK/FLAT/OBJECT=LIGHT/FOCUS
-    double exptime = 0;     ///< 曝光时间
-	double delay  = 0; 		///< 帧间延迟
-    int    frmcnt = 0;      ///< 总帧数
-	string grid_id;		///< 分区模式
-	string field_id;	///< 天区编号
-    string plan_begin;  ///< 计划开始时间. CCYY-MM-DDThh:mm:ss
-    string plan_end;    ///< 计划结束时间. CCYY-MM-DDThh:mm:ss
-    KVVec  kvs;         ///< 一般键值对
-
-public:
-    KVAppGWAC() {
-		type = KVTYPE_APPGWAC;
-	}
-
-    string ToString() const {
-        std::stringstream ss;
-        ss << KVBase::ToString();
-        if (plan_sn.size()) ss << join_kv("plan_sn", plan_sn);
-        if (objid.size())   ss << join_kv("objid", objid);
-		ss << join_kv("obstype",  obstype);
-        ss << join_kv("coor_sys", coorsys);
-        ss << join_kv("ra",    ra);
-        ss << join_kv("dec",   dec);
-        ss << join_kv("epoch", epoch);
-        ss << join_kv("imgtype",  imgtype);
-        ss << join_kv("exptime",  exptime);
-        ss << join_kv("frmcnt",   frmcnt);
-		if (grid_id.size())    ss << join_kv("grid_id",  grid_id);
-		if (field_id.size())   ss << join_kv("field_id", field_id);
-        if (plan_begin.size()) ss << join_kv("plan_beg", plan_begin);
-        if (plan_end.size())   ss << join_kv("plan_end", plan_end);
-
-        for (KVVec::const_iterator it = kvs.begin(); it != kvs.end(); ++it) {
-            ss << join_kv(it->keyword, it->value);
-        }
-
-        ss << std::endl;
-        return ss.str();
-    }
-};
-
-/**
- * @brief 新的观测计划
+ * @brief 新的观测计划: GWAC/后随
  * @note
  * - 服务器: 维护调度观测计划
  * - 相机: 观测计划的描述信息
@@ -150,14 +87,15 @@ struct KVAppPlan : public KVBase
 {
     string plan_sn;     ///< 计划编号
     string objid;       ///< 目标名称
-    int    coorsys;     ///< 0: 赤道; 1: 地平; 2: TLE
-    double ra;          ///< 赤经, 角度
-    double dec;         ///< 赤纬, 角度
-    double epoch;       ///< 历元. 0.0=当前历元
-    double azi;         ///< 方位角, 角度, 南零点
-    double ele;         ///< 俯仰角, 角度
-    string tle1;        ///< 第一行TLE根数
-    string tle2;        ///< 第二行TLE根数
+	string obstype; 	///< 计划类型
+    int    coorsys = 0; ///< 0: 赤道/赤经赤纬; 1: 赤道/时角赤纬
+    double ra = 0;      ///< 赤经/时角, 角度
+    double dec= 0;      ///< 赤纬, 角度
+    double epoch= 2000; ///< 历元. 0.0=当前历元
+    double azi = 0;         ///< 方位角, 角度, 南零点
+    double ele = 0;         ///< 俯仰角, 角度
+    string tle1= "";        ///< 第一行TLE根数
+    string tle2= "";        ///< 第二行TLE根数
     /**
      * imgtype的特殊用法:
      * @li 当没有指定objid时, imgtype替代objid
@@ -175,11 +113,12 @@ struct KVAppPlan : public KVBase
      * - x1分配给关联的第一个相机; y1分配给第二个相机
      * - 当x1或y1序列图像采集完成后, 继续将x2和y2分别分配给不同相机
      */
-    string filter;      ///< 滤光片名称
-    double exptime;     ///< 曝光时间
-    int    frmcnt;      ///< 总帧数
-    int    loopcnt;     ///< 循环次数
-    int    priority;    ///< 优先级
+    string filter   = "";      ///< 滤光片名称
+    double exptime  = 0;    ///< 曝光时间
+	double delay    = 0;     ///< 帧间延迟
+    int    frmcnt   = 1;     ///< 总帧数
+    int    loopcnt  = 1;     ///< 循环次数
+    int    priority = 0;   ///< 优先级
     string plan_begin;  ///< 计划开始时间. CCYY-MM-DDThh:mm:ss
     string plan_end;    ///< 计划结束时间. CCYY-MM-DDThh:mm:ss
     KVVec  kvs;         ///< 一般键值对
@@ -194,26 +133,28 @@ public:
         ss << KVBase::ToString();
         if (plan_sn.size()) ss << join_kv("plan_sn", plan_sn);
         if (objid.size())   ss << join_kv("objid", objid);
+		if (obstype.size()) ss << join_kv("obstype",  obstype);
         ss << join_kv("coor_sys", coorsys);
-        if (coorsys == COORSYS_EQUA) {
-            ss << join_kv("ra",    ra);
-            ss << join_kv("dec",   dec);
-            ss << join_kv("epoch", epoch);
-        }
-        else if (coorsys == COORSYS_ALTAZ) {
-            ss << join_kv("azi", azi);
-            ss << join_kv("ele", ele);
-        }
-        else {
-            ss << join_kv("tle1", tle1);
-            ss << join_kv("tle2", tle2);
-        }
-        if (imgtype.size()) ss << join_kv("imgtype", imgtype);
-        if (filter.size())  ss << join_kv("filter", filter);
+		if (coorsys == 0) {
+	        ss << join_kv("ra",    ra);
+	        ss << join_kv("dec",   dec);
+	        ss << join_kv("epoch", epoch);
+		}
+		else if (coorsys == 1) {
+	        ss << join_kv("azi",   azi);
+	        ss << join_kv("ele",   ele);
+		}
+		else {
+	        ss << join_kv("tle1",   tle1);
+	        ss << join_kv("tle2",   tle2);
+		}
+        ss << join_kv("imgtype",  imgtype);
+		if (filter.size()) ss << join_kv("filter", filter);
         ss << join_kv("exptime",  exptime);
-        ss << join_kv("frmcnt",  frmcnt);
-        ss << join_kv("loopcnt", loopcnt);
-        ss << join_kv("priority",priority);
+        ss << join_kv("delay",    delay);
+        ss << join_kv("frmcnt",   frmcnt);
+        ss << join_kv("loopcnt",  loopcnt);
+        ss << join_kv("priority", priority);
         if (plan_begin.size()) ss << join_kv("plan_beg", plan_begin);
         if (plan_end.size())   ss << join_kv("plan_end", plan_end);
 
@@ -553,14 +494,14 @@ public:
 /**
  * @brief 采集图像: 手动曝光; 不与转台状态联动
  */
-struct KVTakeImage : public KVAppGWAC {
+struct KVTakeImage : public KVAppPlan {
 public:
     KVTakeImage() {
         type = KVTYPE_TKIMG;
     }
 
     string ToString() const {
-        return KVAppGWAC::ToString();
+        return KVAppPlan::ToString();
     }
 };
 
@@ -570,11 +511,13 @@ public:
 struct KVExpose : public KVBase {
     int command;    ///< 由CommandExpose定义
 	int frmno; 		///< 起始帧序号
+	int loopno;		///< 循环序列号, 从1开始
 
 public:
     KVExpose() {
-        type = KVTYPE_EXPOSE;
-		frmno= 0;
+        type   = KVTYPE_EXPOSE;
+		frmno  = 0;
+		loopno = 1;
     }
 
     string ToString() const {
@@ -582,6 +525,7 @@ public:
         ss << KVBase::ToString();
         ss << join_kv("command", command);
 		ss << join_kv("frmno",   frmno);
+		ss << join_kv("loopno",  loopno);
         ss << std::endl;
         return ss.str();
     }
@@ -735,7 +679,7 @@ public:
 };
 
 struct KVFWHM : public KVBase {
-    double fwhm;    ///< 半高全宽
+    double value;   ///< 表征半高全宽的比值
     string tmimg;   ///< FWHM对应的图像时标
 
 public:
@@ -746,7 +690,7 @@ public:
     string ToString() const {
         std::stringstream ss;
         ss << KVBase::ToString();
-        ss << join_kv("fwhm",  fwhm);
+        ss << join_kv("value", value);
         ss << join_kv("tmimg", tmimg);
         ss << std::endl;
         return ss.str();
@@ -759,7 +703,7 @@ public:
 struct KVDerot : public KVBase {
     int    opType;    ///< 0: 位置; 1: 控制
     int    command;   ///< 1: 定位; 0: 停止
-    int    state;     ///< 状态. 1: 运动; 0: 停止
+    int    state;     ///< 状态. 0: 错误; 1: 跟踪; 2: 运动
     double posTar;    ///< 目标位置, 角度
     double pos;       ///< 实时位置, 角度
 
@@ -912,7 +856,6 @@ public:
 //////////////////////////////////////////////////////////////////////////////
 
 typedef boost::shared_ptr<KVAppPlan>    KVAppPlanPtr;
-typedef boost::shared_ptr<KVAppGWAC>    KVAppGWACPtr;
 typedef boost::shared_ptr<KVCheckPlan>  KVChkPlanPtr;
 typedef boost::shared_ptr<KVRemovePlan> KVRmvPlanPtr;
 typedef boost::shared_ptr<KVPlan>       KVPlanPtr;

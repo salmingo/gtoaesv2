@@ -24,6 +24,7 @@ MessageQueue::~MessageQueue() {
 bool MessageQueue::Start(const char *name) {
 	if (!thrdMsgLoop_.unique()) {
 		try {// 启动消息队列
+			mqName_ = name;
 			message_queue::remove(name);
 			mqPtr_.reset(new MsgQue(open_or_create, name, 1024, sizeof(Message)));
 			register_messages();
@@ -42,6 +43,7 @@ void MessageQueue::Stop() {
 		SendMessage(MSG_QUIT);
 		thrdMsgLoop_->join();
 		thrdMsgLoop_.reset();
+		message_queue::remove(mqName_.c_str());
 	}
 }
 

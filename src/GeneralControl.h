@@ -73,15 +73,13 @@ private:
 	Parameter* param_;		///< 配置参数
 	TcpSPtr tcpSvrClient_;		///< TCP服务: 客户端
 	TcpSPtr tcpSvrMountGWAC_;	///< TCP服务: 转台, GWAC
-	TcpSPtr tcpSvrCamera_;		///< TCP服务: 相机
-	TcpSPtr tcpSvrFocusGWAC_;	///< TCP服务: 调焦, GWAC
-	TcpSPtr tcpSvrMountGFT_;	///< TCP服务: 转台, 后随
+	TcpSPtr tcpSvrCameraGWAC_;	///< TCP服务: 相机, GWAC
+	TcpSPtr tcpSvrFocus_;		///< TCP服务: 调焦, GWAC
+	TcpSPtr tcpSvrMountGFT_;	///< TCP服务: 转台, GFT
+	TcpSPtr tcpSvrCameraGFT_;	///< TCP服务: 相机, GFT
 
 	TcpCVec tcpCliClient_;	///< TCP客户: 客户端
-	TcpCVec tcpCliMountGWAC_;	///< TCP客户: 转台, GWAC
-	TcpCVec tcpCliCamera_;	///< TCP客户: 相机
-	TcpCVec tcpCliFocusGWAC_;	///< TCP客户: 调焦
-	TcpCVec tcpCliMountGFT_;///< TCP客户: 转台, 后随
+	TcpCVec tcpCliDevice_;	///< TCP客户: 设备
 
 	KVProtocol kvproto_;		///< 解析通信协议: 指令+键值对
 	NonKVProtocol nonkvproto_;	///< 解析通信协议: 转台
@@ -132,26 +130,29 @@ private:
 	// 收到网络信息
 	void tcp_receive(TcpClient* cliptr, boost::system::error_code ec, int peer_type);
 
-	// 处理图像协议: 客户端
+	// 处理通信协议: 客户端
 	void process_protocol_client(KVBasePtr proto);
-	// 处理图像协议: 转台
-	void process_protocol_mount(TcpClient* cliptr, NonKVBasePtr proto);
-	// 处理图像协议: 相机
-	void process_protocol_camera(TcpClient* cliptr, KVBasePtr proto);
-	// 处理图像协议: 调焦
+	// 处理通信协议: 转台, GWAC
+	void process_protocol_mount_gwac(TcpClient* cliptr, NonKVBasePtr proto);
+	// 处理通信协议: 转台, GFT
+	void process_protocol_mount_gft(TcpClient* cliptr, KVBasePtr proto);
+	// 处理通信协议: 相机
+	void process_protocol_camera(TcpClient* cliptr, KVBasePtr proto, int peer_type);
+	// 处理通信协议: 调焦
 	void process_protocol_focus(TcpClient* cliptr, NonKVBasePtr proto);
 
 private:
 	/*!
 	 * @brief 查找与gid和uid匹配的观测系统
-	 * @param gid 组标志
-	 * @param uid 单元标志
+	 * @param gid  组标志
+	 * @param uid  单元标志
+	 * @param type 终端类型. 0==GWAC; 1==GFT
 	 * @return
 	 * 匹配的观测系统访问接口
 	 * @note
 	 * 若观测系统不存在, 则先创建该系统
 	 */
-	ObssPtr find_obss(const string& gid, const string& uid);
+	ObssPtr find_obss(const string& gid, const string& uid, int type = 0);
 
 private:
 	/**

@@ -17,13 +17,14 @@
  * @brief 网络工作环境下, 终端设备的归类
  */
 enum {///< 对应主机类型
-	PEER_CLIENT,	///< 客户端
-	PEER_MOUNT_GWAC,///< 转台, GWAC
-	PEER_MOUNT_GFT, ///< 转台, 后随
-	PEER_CAMERA,	///< 相机
-	PEER_FOCUS,		///< 调焦
-	PEER_DATAPROC,	///< 数据处理
-	PEER_LAST		///< 占位, 不使用
+	PEER_CLIENT,	 ///< 客户端
+	PEER_MOUNT_GWAC, ///< 转台, GWAC
+	PEER_MOUNT_GFT,  ///< 转台, GFT
+	PEER_CAMERA_GWAC,///< 相机, GWAC
+	PEER_CAMERA_GFT, ///< 相机, GFT
+	PEER_FOCUS,		 ///< 调焦//GWAC
+	PEER_DATAPROC,	 ///< 数据处理
+	PEER_LAST		 ///< 占位, 不使用
 };
 
 /* 状态与指令 */
@@ -67,6 +68,21 @@ static const char* DESC_STATE_MOUNT[] = {
 	"Slewing",
 	"Tracking",
 	"Guiding"
+};
+
+/////////////////////////////////////////////////////////////////////////////
+enum {// 消旋状态
+	DEROT_MIN = -1,
+	DEROT_ERROR,	//< 错误
+	DEROT_TRACK,	//< 跟踪/静止
+	DEROT_MOVING,	//< 运动/指向
+	DEROT_MAX
+};
+
+static const char* DESC_STATE_DEROT[] = {
+	"Error",
+	"Tracking",
+	"Slewing"
 };
 
 /////////////////////////////////////////////////////////////////////////////

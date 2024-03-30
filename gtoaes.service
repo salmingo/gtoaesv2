@@ -1,0 +1,15 @@
+[Unit]
+Description=ground telescope observation auxiliary execution software V2
+
+[Service]
+Type=forking
+PIDFile=/run/gtoaes.pid
+User=root
+Group=root
+WorkingDirectory=/
+ExecStart=/usr/local/bin/gtoaes
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

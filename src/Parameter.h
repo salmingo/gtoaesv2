@@ -21,15 +21,16 @@ struct Parameter
 	// 服务端口
 	int portClient	    = 5010;	//< 客户端
 	int portMountGWAC	= 5011;	//< 转台, GWAC
-	int portCamera	    = 5012;	//< 相机
+	int portCameraGWAC  = 5012;	//< 相机, GWAC
 	int portFocusGWAC   = 5013;	//< 调焦, GWAC
 	int portMountGFT    = 5014; //< 后随望远镜
+	int portCameraGFT   = 5015; //< 相机, 后随望远镜
 
 	// 测站位置
 	string siteName = "Xinglong";	//< 名称
 	double siteLon  = 117.57454;	//< 地理经度, 角度, 东经为正
 	double siteLat  = 40.39593;		//< 地理纬度, 角度, 北纬为正
-	double siteAlt  = 900;		//< 海拔, 米
+	double siteAlt  = 900;			//< 海拔, 米
 
 public:
 	// 初始化配置参数

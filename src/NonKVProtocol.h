@@ -16,13 +16,14 @@
 
 #include <string>
 #include <limits.h>
-#include <boost/smart_ptr/shared_ptr.hpp>
+#include "BoostInclude.h"
 
 using std::string;
 
 #define NONKVTYPE_STATE		"status"
 #define NONKVTYPE_POS		"currentpos"
 #define NONKVTYPE_FOCUS		"focus"
+#define NONKVTYPE_RESPONSE	"rsp"
 
 /*!
  * @brief 通信协议基类, 包含组标志
@@ -57,6 +58,7 @@ struct NonKVStatus : public NonKVBase {
 
 public:
 	NonKVStatus() {
+		type = NONKVTYPE_STATE;
 		n = 0;
 	}
 };
@@ -88,7 +90,7 @@ public:
 };
 
 struct MirrCoverState {// 镜盖开关状态
-	std::string cid;	//< 相机标志
+	string cid;	//< 相机标志
 	int state;			//< 镜盖状态
 						//	-2：正在关闭
 						//	-1：已关闭
@@ -114,6 +116,16 @@ public:
 	}
 };
 
+/**
+ * @brief 指令回馈
+ */
+struct NonKVResponse : public NonKVBase {
+public:
+	NonKVResponse() {
+		type = NONKVTYPE_RESPONSE;
+	}
+};
+
 typedef boost::shared_ptr<NonKVBase> NonKVBasePtr;
 
 class NonKVProtocol {
@@ -126,20 +138,14 @@ protected:
 	// 成员变量
 	string gid_;	///< 组标志
 	string uid_;	///< 单元标志
-	int sn_findhome_ = 0;	///< 序列号: FindHome
-	int sn_homesync_ = 0;	///< 序列号: HomeSync
-	int sn_slew_ = 0;		///< 序列号: Slew
-	int sn_slewhd_ = 0;		///< 序列号: SlewHD
-	int sn_guide_ = 0;		///< 序列号: Guide
-	int sn_park_ = 0;		///< 序列号: Park
-	int sn_track_ = 0;		///< 序列号: Track
-	int sn_trackvel_ = 0;	///< 序列号: TrackVel
-	int sn_abort_ = 0;		///< 序列号: AbortSlew
-	int sn_focus_ = 0;		///< 序列号: Focus
+	boost::mutex mtxSerno_;	///< 序列号互斥锁
+	int serno_ = 1;	///< 指令序列号
 
 private:
 	// 解析焦点位置
 	int resolve_focus(const char* id);
+	// 增加序列号
+	int increase_serno();
 
 public:
 	/*!
@@ -153,95 +159,103 @@ public:
 public:
 	/*!
 	 * @brief 组装构建find_home指令
-	 * @param ra   赤经轴指令
-	 * @param dec  赤纬轴指令
+	 * @param serno 指令序号
+	 * @param ra    赤经轴指令
+	 * @param dec   赤纬轴指令
 	 * @return
 	 * 组装后协议
 	 */
-	string FindHome(bool ra = true, bool dec = true);
+	string FindHome(int& serno, bool ra = true, bool dec = true);
 	/*!
 	 * @brief 组装构建home_sync指令
+	 * @param serno 指令序号
 	 * @param ra    当前转台指向位置对应的当前历元赤经位置, 量纲: 角度
 	 * @param dec   当前转台指向位置对应的当前历元赤纬位置, 量纲: 角度
 	 * @return
 	 * 组装后协议
 	 */
-	string HomeSync(double ra, double dec);
+	string HomeSync(int& serno, double ra, double dec);
 	/*!
 	 * @brief 组装构建slew指令
+	 * @param serno 指令序号
 	 * @param ra    当前历元赤经位置, 量纲: 角度
 	 * @param dec   当前历元赤纬位置, 量纲: 角度
 	 * @return
 	 * 组装后协议
 	 */
-	string Slew(double ra, double dec);
+	string Slew(int& serno, double ra, double dec);
 	/*!
 	 * @brief 组装构建slewhd指令
+	 * @param serno    指令序号
 	 * @param ha       当前历元时角位置, 量纲: 角度
 	 * @param dec      当前历元赤纬位置, 量纲: 角度
 	 * @return
 	 * 组装后协议
 	 */
-	string SlewHD(double ha, double dec);
+	string SlewHD(int& serno, double ha, double dec);
 	/*!
 	 * @brief 组装构建guide指令
+	 * @param serno  指令序号
 	 * @param ra     赤经偏差量, 量纲: 角秒
 	 * @param dec    赤纬偏差量, 量纲: 角秒
 	 * @return
 	 * 组装后协议
 	 */
-	string Guide(int ra, int dec);
+	string Guide(int& serno, int ra, int dec);
 	/*!
 	 * @brief 组装构建park指令
+	 * @param serno  指令序号
 	 * @return
 	 * 组装后协议
 	 */
-	string Park();
+	string Park(int& serno);
 	/*!
 	 * @brief 组装构建abort_slew指令
+	 * @param serno  指令序号
 	 * @return
 	 * 组装后协议
 	 */
-	string AbortSlew();
+	string AbortSlew(int& serno);
 	/**
 	 * @brief 组装构建track指令
+	 * @param serno  指令序号
 	 */
-	string Track();
+	string Track(int& serno);
 	/**
 	 * @brief 组装构建trackVel指令
-	 * @param ra  赤经速度, 量纲: 角秒@秒
-	 * @param dec 赤纬速度, 量纲: 角秒@秒
+	 * @param serno  指令序号
+	 * @param ra     赤经速度, 量纲: 角秒@秒
+	 * @param dec    赤纬速度, 量纲: 角秒@秒
 	 * @note 设置转台自定义跟踪速度
 	 */
-	string TrackVelocity(double ra, double dec);
-	// /*!
-	//  * @brief 组装构建focus指令
-	//  * @param gid  组标志
-	//  * @param uid   单元标志
-	//  * @param camera_id 相机标志
-	//  * @param fwhm      星像FWHM, 量纲: 像素
-	//  * @return
-	//  * 组装后协议
-	//  */
-	// const char* compact_fwhm(const std::string& gid, const std::string& uid, const std::string& camera_id, const double fwhm, int& n);
+	string TrackVelocity(int& serno, double ra, double dec);
+	/*!
+	 * @brief 组装构建focus指令
+	 * @param serno  指令序号
+	 * @param cid    相机标志
+	 * @param tmobs  图像采集时间, 格式: hhmmsssss
+	 * @param fwhm   星像FWHM, 量纲: 像素
+	 * @return
+	 * 组装后协议
+	 */
+	string FWHM(int& serno, const string& cid, const string& tmobs, double fwhm);
 	/*!
 	 * @brief 由focus组装构建focus指令
+	 * @param serno  指令序号
 	 * @param cid    相机标志
 	 * @param pos    焦点位置
 	 * @return
 	 * 组装后协议
 	 */
-	string Focus(const std::string& cid, int pos);
-	// /*!
-	//  * @brief 组装构建mirror_cover指令
-	//  * @param gid  组标志
-	//  * @param uid   单元标志
-	//  * @param camera_id 相机标志
-	//  * @param command   镜盖开关指令. 0: 关闭; 1: 打开
-	//  * @return
-	//  * 组装后协议
-	//  */
-	// const char* compact_mirror_cover(const std::string& gid, const std::string& uid, const std::string& camera_id, const int command, int& n);
+	string Focus(int& serno, const string& cid, int pos);
+	/*!
+	 * @brief 由focus组装构建focus_sync指令
+	 * @param serno  指令序号
+	 * @param cid    相机标志
+	 * @return
+	 * 组装后协议
+	 */
+	string FocusSync(int& serno, const string& cid);
 };
 
 #endif /* MOUNTPROTO_H_ */

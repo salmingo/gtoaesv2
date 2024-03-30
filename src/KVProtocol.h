@@ -108,6 +108,14 @@ private:
      * @brief 转台: 导星
      */
     KVBasePtr resolve_guide(const KVVec& kvs);
+    /**
+     * @brief 转台: 切换跟踪模式
+     */
+    KVBasePtr resolve_track(const KVVec& kvs);
+    /**
+     * @brief 转台: 改变跟踪速度
+     */
+    KVBasePtr resolve_trackvel(const KVVec& kvs);
 
     /**
      * @brief 相机: 手动曝光
@@ -126,6 +134,10 @@ private:
      * @brief 调焦: 开环调焦
      */
     KVBasePtr resolve_focus(const KVVec& kvs);
+    /**
+     * @brief 调焦: 重置焦点零点
+     */
+    KVBasePtr resolve_focus_sync(const KVVec& kvs);
     /**
      * @brief 调焦: 闭环调焦
      */

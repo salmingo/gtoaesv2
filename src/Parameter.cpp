@@ -13,9 +13,10 @@ bool Parameter::Init(const string& filepath) {
 	ptree& ptNet = pt.add("Network", "");
 	ptNet.add("Client.<xmlattr>.port",     portClient);
 	ptNet.add("MountGWAC.<xmlattr>.port",  portMountGWAC);
-	ptNet.add("Camera.<xmlattr>.port",     portCamera);
+	ptNet.add("CameraGWAC.<xmlattr>.port", portCameraGWAC);
 	ptNet.add("FocusGWAC.<xmlattr>.port",  portFocusGWAC);
 	ptNet.add("MountGFT.<xmlattr>.port",   portMountGFT);
+	ptNet.add("CameraGFT.<xmlattr>.port",  portCameraGFT);
 
 	ptree& ptSite = pt.add("GeoSite", "");
 	ptSite.add("<xmlattr>.name", siteName);
@@ -42,9 +43,10 @@ bool Parameter::Load(const string& filepath) {
 
 		portClient     = pt.get("Network.Client.<xmlattr>.port",     5010);
 		portMountGWAC  = pt.get("Network.MountGWAC.<xmlattr>.port",  5011);
-		portCamera     = pt.get("Network.Camera.<xmlattr>.port",     5012);
+		portCameraGWAC = pt.get("Network.CameraGWAC.<xmlattr>.port", 5012);
 		portFocusGWAC  = pt.get("Network.FocusGWAC.<xmlattr>.port",  5013);
 		portMountGFT   = pt.get("Network.MountGFT.<xmlattr>.port",   5014);
+		portCameraGFT  = pt.get("Network.CameraGFT.<xmlattr>.port",  5015);
 
 		siteName = pt.get("GeoSite.<xmlattr>.name", "");
 		siteLon  = pt.get("GeoSite.Coords.<xmlattr>.lon", 120);
@@ -66,9 +68,10 @@ bool Parameter::Save(const string& filepath) {
 	ptree& ptNet = pt.add("Network", "");
 	ptNet.add("Client.<xmlattr>.port",     portClient);
 	ptNet.add("MountGWAC.<xmlattr>.port",  portMountGWAC);
-	ptNet.add("Camera.<xmlattr>.port",     portCamera);
+	ptNet.add("CameraGWAC.<xmlattr>.port", portCameraGWAC);
 	ptNet.add("FocusGWAC.<xmlattr>.port",  portFocusGWAC);
 	ptNet.add("MountGFT.<xmlattr>.port",   portMountGFT);
+	ptNet.add("CameraGFT.<xmlattr>.port",  portCameraGFT);
 
 	ptree& ptSite = pt.add("GeoSite", "");
 	ptSite.add("<xmlattr>.name", siteName);

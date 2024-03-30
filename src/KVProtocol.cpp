@@ -50,7 +50,8 @@ KVBasePtr KVProtocol::Resolve(const char* rcvd) {
         else if (iequals(type, KVTYPE_DOME))  proto = resolve_dome(kvs);
     }
     else if (ch == 'f') {
-        if      (iequals(type, KVTYPE_FOCUS)) proto = resolve_focus(kvs);
+        if      (iequals(type, KVTYPE_FOCUS))       proto = resolve_focus(kvs);
+        else if (iequals(type, KVTYPE_FOCUS_SYNC))  proto = resolve_focus_sync(kvs);
         else if (iequals(type, KVTYPE_FWHM))  proto = resolve_fwhm(kvs);
         else if (iequals(type, KVTYPE_FILTER))proto = resolve_filter(kvs);
     }
@@ -66,12 +67,16 @@ KVBasePtr KVProtocol::Resolve(const char* rcvd) {
         if      (iequals(type, KVTYPE_SLEWTO)) proto = resolve_slewto(kvs);
         else if (iequals(type, KVTYPE_SYNC))   proto = resolve_sync(kvs);
     }
-    else if (iequals(type, KVTYPE_EXPOSE)) proto = resolve_expose(kvs);
-    else if (iequals(type, KVTYPE_GUIDE))  proto = resolve_guide(kvs);
-    else if (iequals(type, KVTYPE_HOME))   proto = resolve_home(kvs);
-    else if (iequals(type, KVTYPE_OBSS))   proto = resolve_obss(kvs);
+	else if (ch == 't') {
+	    if      (iequals(type, KVTYPE_TKIMG))     proto = resolve_take_image(kvs);
+	    else if (iequals(type, KVTYPE_TRACK))     proto = resolve_track(kvs);
+	    else if (iequals(type, KVTYPE_TRACKVEL))  proto = resolve_trackvel(kvs);
+	}
+    else if (iequals(type, KVTYPE_EXPOSE))  proto = resolve_expose(kvs);
+    else if (iequals(type, KVTYPE_GUIDE))   proto = resolve_guide(kvs);
+    else if (iequals(type, KVTYPE_HOME))    proto = resolve_home(kvs);
+    else if (iequals(type, KVTYPE_OBSS))    proto = resolve_obss(kvs);
     else if (iequals(type, KVTYPE_RMVPLAN)) proto = resolve_remove_plan(kvs);
-    else if (iequals(type, KVTYPE_TKIMG))  proto = resolve_take_image(kvs);
 
     if (proto.unique()) *proto = basis;
     else _gLog.Write(LOG_FAULT, "%s:%s: %s", typeid(this).name(), __FUNCTION__, rcvd);
@@ -127,7 +132,6 @@ void KVProtocol::resolve_kv(const char* str, KVVec& kvs, KVBase& basis) {
  * @brief 追加观测计划
  */
 KVBasePtr KVProtocol::resolve_append_plan(const KVVec& kvs) {
-    // KVAppPlanPtr proto = boost::make_shared<KVAppPlan>();
     KVAppPlanPtr proto(new KVAppPlan);
     KVVec& kvsProto = proto->kvs;
 
@@ -137,6 +141,7 @@ KVBasePtr KVProtocol::resolve_append_plan(const KVVec& kvs) {
         for (KVVec::const_iterator it = kvs.begin(); it != kvs.end(); ++it) {
             if      (iequals(it->keyword, "plan_sn"))  proto->plan_sn = it->value;
             else if (iequals(it->keyword, "objid"))    proto->objid   = it->value;
+            else if (iequals(it->keyword, "obstype"))  proto->obstype = it->value;
             else if (iequals(it->keyword, "coor_sys")) proto->coorsys = std::stoi(it->value);
             else if (iequals(it->keyword, "ra"))       proto->ra      = std::stod(it->value);
             else if (iequals(it->keyword, "dec"))      proto->dec     = std::stod(it->value);
@@ -148,6 +153,7 @@ KVBasePtr KVProtocol::resolve_append_plan(const KVVec& kvs) {
             else if (iequals(it->keyword, "imgtype"))  proto->imgtype = it->value;
             else if (iequals(it->keyword, "filter"))   proto->filter  = it->value;
             else if (iequals(it->keyword, "exptime"))  proto->exptime = std::stod(it->value);
+            else if (iequals(it->keyword, "delay"))    proto->delay   = std::stod(it->value);
             else if (iequals(it->keyword, "frmcnt"))   proto->frmcnt  = std::stoi(it->value);
             else if (iequals(it->keyword, "loopcnt"))  proto->loopcnt = std::stoi(it->value);
             else if (iequals(it->keyword, "priority")) proto->priority= std::stoi(it->value);
@@ -179,49 +185,9 @@ KVBasePtr KVProtocol::resolve_append_plan(const KVVec& kvs) {
  * @brief 追加观测计划: GWAC
  */
 KVBasePtr KVProtocol::resolve_append_gwac(const KVVec& kvs) {
-    KVAppGWACPtr proto = boost::make_shared<KVAppGWAC>();
-    KVVec& kvsProto = proto->kvs;
-
-    proto->coorsys = 0;
-    proto->epoch   = 2000.0;
-    try {
-        for (KVVec::const_iterator it = kvs.begin(); it != kvs.end(); ++it) {
-            if      (iequals(it->keyword, "plan_sn"))  proto->plan_sn = it->value;
-            else if (iequals(it->keyword, "objid"))    proto->objid   = it->value;
-			else if (iequals(it->keyword, "obstype"))  proto->obstype = it->value;
-            else if (iequals(it->keyword, "coor_sys")) proto->coorsys = std::stoi(it->value);
-            else if (iequals(it->keyword, "ra"))       proto->ra      = std::stod(it->value);
-            else if (iequals(it->keyword, "dec"))      proto->dec     = std::stod(it->value);
-            else if (iequals(it->keyword, "ecoch"))    proto->epoch   = std::stod(it->value);
-            else if (iequals(it->keyword, "imgtype"))  proto->imgtype = it->value;
-            else if (iequals(it->keyword, "exptime"))  proto->exptime = std::stod(it->value);
-            else if (iequals(it->keyword, "delay"))    proto->delay   = std::stod(it->value);
-            else if (iequals(it->keyword, "frmcnt"))   proto->frmcnt  = std::stoi(it->value);
-			else if (iequals(it->keyword, "grid_id"))  proto->grid_id = it->value;
-			else if (iequals(it->keyword, "field_id")) proto->field_id= it->value;
-            else if (iequals(it->keyword, "plan_beg")) proto->plan_begin= it->value;
-            else if (iequals(it->keyword, "plan_end")) proto->plan_end  = it->value;
-            else kvsProto.push_back(*it);
-        }
-
-        // 修订缺省项
-        if (proto->imgtype.empty()) proto->imgtype = fabs(proto->exptime) < 1E-3 ? "BIAS" : "OBJECT";
-		if (iequals(proto->imgtype, "bias")) proto->exptime = 0.0;
-        if (proto->objid.empty())   proto->objid   = iequals(proto->imgtype, "BIAS") ? "bias"
-            : (iequals(proto->imgtype, "DARK") ? "dark"
-                : (iequals(proto->imgtype, "FLAT") ? "flat"
-                    : (iequals(proto->imgtype, "FOCUS") ? "focs" : "objt")));
-    }
-    catch(std::invalid_argument& ex1) {
-        proto.reset();
-        _gLog.Write(LOG_WARN, "[%s]: %s", proto->type.c_str(), ex1.what());
-    }
-    catch(std::out_of_range& ex2) {
-        proto.reset();
-        _gLog.Write(LOG_WARN, "[%s]: %s", proto->type.c_str(), ex2.what());
-    }
-
-    return to_kvbase(proto);
+    KVBasePtr proto = resolve_append_plan(kvs);
+	if (proto.unique()) proto->type = KVTYPE_APPGWAC;
+	return proto;
 }
 
 /**
@@ -466,10 +432,41 @@ KVBasePtr KVProtocol::resolve_guide(const KVVec& kvs) {
 }
 
 /**
+ * @brief 转台: 切换跟踪模式
+ */
+KVBasePtr KVProtocol::resolve_track(const KVVec& kvs) {
+	KVTrackPtr proto = boost::make_shared<KVTrack>();
+    return to_kvbase(proto);
+}
+
+/**
+ * @brief 转台: 改变跟踪速度
+ */
+KVBasePtr KVProtocol::resolve_trackvel(const KVVec& kvs) {
+    KVTrackVelPtr proto = boost::make_shared<KVTrackVel>();
+
+    try {
+        for (KVVec::const_iterator it = kvs.begin(); it != kvs.end(); ++it) {
+            if      (iequals(it->keyword, "ra"))   proto->ra   = std::stod(it->value);
+            else if (iequals(it->keyword, "dec"))  proto->dec  = std::stod(it->value);
+        }
+    }
+    catch(std::invalid_argument& ex1) {
+        proto.reset();
+        _gLog.Write(LOG_WARN, "[%s]: %s", proto->type.c_str(), ex1.what());
+    }
+    catch(std::out_of_range& ex2) {
+        proto.reset();
+        _gLog.Write(LOG_WARN, "[%s]: %s", proto->type.c_str(), ex2.what());
+    }
+    return to_kvbase(proto);
+}
+
+/**
  * @brief 相机: 手动曝光
  */
 KVBasePtr KVProtocol::resolve_take_image(const KVVec& kvs) {
-    KVBasePtr proto = resolve_append_gwac(kvs);
+    KVBasePtr proto = resolve_append_plan(kvs);
 	if (proto.unique()) proto->type = KVTYPE_TKIMG;
 	return proto;
 }
@@ -482,7 +479,9 @@ KVBasePtr KVProtocol::resolve_expose(const KVVec& kvs){
 
     try {
         for (KVVec::const_iterator it = kvs.begin(); it != kvs.end(); ++it) {
-            if (iequals(it->keyword, "command")) proto->command = std::stoi(it->value);
+            if (iequals(it->keyword, "command"))     proto->command = std::stoi(it->value);
+            else if (iequals(it->keyword, "frmno"))  proto->frmno   = std::stoi(it->value);
+            else if (iequals(it->keyword, "loopno")) proto->loopno  = std::stoi(it->value);
         }
     }
     catch(std::invalid_argument& ex1) {
@@ -558,6 +557,14 @@ KVBasePtr KVProtocol::resolve_focus(const KVVec& kvs) {
 }
 
 /**
+ * @brief 调焦: 重置焦点零点
+ */
+KVBasePtr KVProtocol::resolve_focus_sync(const KVVec& kvs) {
+	KVFocusSyncPtr proto = boost::make_shared<KVFocusSync>();
+	return to_kvbase(proto);
+}
+
+/**
  * @brief 调焦: 闭环调焦
  */
 KVBasePtr KVProtocol::resolve_fwhm(const KVVec& kvs) {
@@ -565,7 +572,7 @@ KVBasePtr KVProtocol::resolve_fwhm(const KVVec& kvs) {
 
     try {
         for (KVVec::const_iterator it = kvs.begin(); it != kvs.end(); ++it) {
-            if      (iequals(it->keyword, "fwhm"))  proto->fwhm  = std::stod(it->value);
+            if      (iequals(it->keyword, "value")) proto->value = std::stod(it->value);
             else if (iequals(it->keyword, "tmimg")) proto->tmimg = it->value;
         }
     }

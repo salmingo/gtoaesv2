@@ -11,6 +11,7 @@
 #ifndef SRC_MESSAGEQUEUE_H_
 #define SRC_MESSAGEQUEUE_H_
 
+#include <string>
 #include <boost/interprocess/ipc/message_queue.hpp>
 #include <boost/signals2/signal.hpp>
 #include "BoostInclude.h"
@@ -51,6 +52,7 @@ protected:
 
 	//////////////////////////////////////////////////////////////////////////////
 	/* 消息队列 */
+	std::string mqName_;		///< 消息队列名称. 用于删除错误创建的消息队列
 	MsgQuePtr mqPtr_;			///< 消息队列
 	const long funcs_count_;	///< 自定义回调函数数组长度
 	CBArray funcs_;				///< 回调函数数组

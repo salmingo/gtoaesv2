@@ -263,8 +263,5 @@ void TcpServer::handle_accept(TcpClient* client, const error_code& ec) {
 		cbfunc_(client, this);
 		client->Start();
 	}
-	else {
-		_gLog.Write(LOG_WARN, "[%s:%s], %s", __FILE__, __FUNCTION__, ec.message().c_str());
-	}
 	start_accept();
 }
